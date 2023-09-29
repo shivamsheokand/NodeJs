@@ -28,3 +28,6 @@
 - Functional metadata properties: As the name suggests, it consists of the functional values/properties of the project/module such as the entry/starting point of the module, dependencies in project, scripts being used, repository links of Node project etc.
 - How to Make it
 -  #npm init
+
+### 🤔 input From command line
+- console.log(process.argv[2]); 
