@@ -14,8 +14,12 @@ const file = `${getPath}/simple.txt`;
 
 // update file
 
-fs.appendFile(file, 'this file maked for test purposes',(err)=>{
-    if(!err){
-        console.log('file is updated');
-    }
-});
+// fs.appendFile(file, 'this file maked for test purposes',(err)=>{
+//     if(!err){
+//         console.log('file is updated');
+//     }
+// });
+
+// rename file
+
+fs.rename(file,)

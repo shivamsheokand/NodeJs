@@ -31,3 +31,7 @@
 
 ### 🤔 input From command line
 - console.log(process.argv[2]); 
+
+## Asynchronous and Synchronous 
+- in Synchronous operation take are preformed one at a time.
+- in Asynchronous operation Second task do not wait to finish first task.
