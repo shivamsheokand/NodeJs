@@ -30,12 +30,20 @@ app.get('/profile',(req,res)=>{
 try{
     const user ={
         name:'shivam',
-        email:'shivam@gmail.com'
+        email:'shivam@gmail.com',
+        skills:['php','js','rust','node','react'],
     }
     res.render('profile',{user});
 }catch(err){
     console.log('internal server error',err);
 }
+})
+app.get('/login',(req,res)=>{
+    try{
+        res.render('login');
+    }catch(err){
+        console.log('Err',err);
+    }
 })
 app.get('*',(req,res)=>{
 try{

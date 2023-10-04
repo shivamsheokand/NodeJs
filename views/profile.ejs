@@ -21,6 +21,11 @@
             text-align: center;
             margin-top: 200;
         }
+        li{
+            color: rgb(27, 208, 193);
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            margin-top: 200;
+        }
         .main{
             flex: 1;
             align-items: center;
@@ -32,6 +37,13 @@
     <div class="main">
         <h1>Welcome <%= user.name%></h1>
         <h3>Ur email is <%=user.email%></h3>
+        <ul>
+            <% user.skills.forEach((item)=>{ %>
+                <li>
+                    <%=item %>
+                </li>
+            <%})%>
+        </ul>
     </div>
 </body>
 </html>
