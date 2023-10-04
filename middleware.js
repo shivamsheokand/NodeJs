@@ -1,8 +1,12 @@
+// Application level middleware
+
+
 const express=require('express');
 const path=require('path');
 
 const app = express();
 const dirpath=path.join(__dirname, 'public');
+console.log(dirpath);
 
 app.listen(5000);
 
