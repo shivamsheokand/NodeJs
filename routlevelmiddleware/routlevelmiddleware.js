@@ -1,41 +1,43 @@
-
 const express = require('express');
 const path = require('path');
 const reqfilter = require('./middleware');
-
 const app = express();
+const route = express.Router();
 
-app.listen(5000);
+
+app.use(reqfilter);
+
+
 const dirpath = path.join(__dirname, '../Public');
+app.use(express.static(dirpath));
 
-// //middleware
+// Define routes
+app.get('/', (req, res) => {
+    res.sendFile(path.join(dirpath, 'index.html'));
+});
 
-// const reqfilter = (req, res,next) =>{
-//     if(!req.query.age){
-//         res.send('Pls Provide Age!!!')
-//     }else if(req.query.age<18){
-//         res.send('Ur under 18');
-//     }else if(req.query.age>18){
-//         next();
-//     }else{
-//         res.send('Pls Provide Vaild Age');
-//     }
-// }
-// app.use(reqfilter);
-app.get('',reqfilter,(req, res) => {
-    try {
-        res.sendFile(`${dirpath}/index.html`);
-    } catch (Err) {
-        console.log('error', Err);
-    }
+route.get('/user', (req, res) => {
+    res.send('<h1>This is User Page</h1>');
 });
-app.get('/user', (req, res) => {
-    try {
-        res.send(`<h1>This is User Page</h1>`);
-    } catch (err) { console.log('error', err); }
+
+app.get('/contact', (req, res) => {
+    res.send('<h1>This is Contact Page</h1>');
 });
-app.get('*',(req, res) => {
-    try{
-        res.send('Page Not Found');
-    }catch(err){console.log('error', err);}
+
+// Handle 404 errors
+app.use((req, res) => {
+    res.status(404).send('Page Not Found');
+});
+
+
+// Handle global errors
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+});
+
+app.use('/', route);
+
+app.listen(5000, () => {
+    console.log('Server is running on port 5000');
 });
