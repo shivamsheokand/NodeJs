@@ -1,20 +1,13 @@
-const {MongoClient} = require('mongodb'); //modren js 
-// const MongoClient = require('mongodb').MongoClient; // old js
+const getData = require('./db'); 
 
-// dataBase
-const dataBase = 'shivam';
+const main = async () => {
+    try {
+        const data = await getData();
+        const filteredData = await data.find({ name: 'nord' }).toArray();
+        console.log(filteredData);
+    } catch (error) {
+        console.error(error);
+    }
+};
 
-// set path for mongodb
-
-const url = 'mongodb://localhost:27017/shivam';
-
-const client = new MongoClient(url);
-
-async function getData(){
-    let result= await client.connect();
-    let db = result.db(dataBase);
-    let collections =db.collections('data');
-    console.log((await collections).find({}),Array());
-}
-
-console.log(getData());
+main();
